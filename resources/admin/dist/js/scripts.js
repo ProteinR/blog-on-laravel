@@ -11,3 +11,8 @@ $(function () {
         radioClass: 'iradio_minimal-blue'
     });
 });
+
+$(function () {
+    $("#example1").DataTable();
+});
+

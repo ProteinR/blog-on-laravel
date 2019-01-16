@@ -16,7 +16,7 @@ class User extends Authenticatable
 
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password'
     ];
 
     /**
@@ -39,7 +39,7 @@ class User extends Authenticatable
     public static function add($fields) {
         $user = new static();
         $user->fill($fields);
-        $user->password->bcrypt($fields['password']);
+        $user->password = bcrypt($fields['password']);
         $user->save();
         return $user;
     }
@@ -59,18 +59,21 @@ class User extends Authenticatable
         if($image == null) { //если картинка не зашла - выйти
             return;
         }
-        Storage::delete('uploads/' . $this->image);
+        if ($this->avatar != null) {
+            Storage::delete('uploads/' . $this->avatar);
+        }
+        Storage::delete('uploads/' . $this->avatar);
         $filename = str_random(10) . '.' . $image->extension();
-        $image->saveAS('uploads', '$filename');
-        $this->image = $filename;
+        $image->storeAs('uploads', $filename);
+        $this->avatar = $filename;
         $this->save();
     }
 
     public function getAvatar(){
-        if ($this->image == null){
+        if ($this->avatar == null){
             return '/img/no-user-image.png';
         }
-        return '/uploads/' . $this->image;
+        return '/uploads/' . $this->avatar;
     }
 
 

@@ -8,6 +8,20 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <link rel="stylesheet" href="/css/admin.css">
+    <style>
+        table.table form
+        {
+            display: inline-block;
+        }
+
+        button.delete
+        {
+            background: transparent;
+            border: none;
+            color: #337ab7;
+            padding: 0px;
+        }
+    </style>
 
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>

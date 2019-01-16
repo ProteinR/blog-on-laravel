@@ -21,7 +21,7 @@ mix.styles([
     'resources/admin/plugin/icheck/minimal/_all.css',
     'resources/admin/plugins/datepicker/datepicker3.css',
     'resources/admin/plugins/select2/select2.min.css',
-    'resources/admin/plugins/datatables/dataTables.bootstrap.css',
+    'resources/admin/plugins/datatables/dataTables.bootstrap.min.css',
     'resources/admin/dist/css/AdminLTE.min.css',
     'resources/admin/dist/css/skins/_all-skins.min.css'
 ],'public/css/admin.css');
@@ -32,7 +32,7 @@ mix.scripts([
     'resources/admin/plugins/select2/select2.full.min.js',
     'resources/admin/plugins/datepicker/bootstrap-datepicker.js',
     'resources/admin/plugins/datatables/jquery.dataTables.min.js',
-    'resources/admin/plugins/datatables/jquery.dataTables.bootstrap.min.js',
+    'resources/admin/plugins/datatables/dataTables.bootstrap.min.js',
     'resources/admin/plugins/slimScroll/jquery.slimscroll.min.js',
     'resources/admin/plugins/fastclick/fastclick.js',
     'resources/admin/plugins/iCheck/icheck.min.js',
