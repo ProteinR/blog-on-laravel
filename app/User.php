@@ -16,7 +16,7 @@ class User extends Authenticatable
 
 
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email',
     ];
 
     /**
@@ -39,30 +39,44 @@ class User extends Authenticatable
     public static function add($fields) {
         $user = new static();
         $user->fill($fields);
-        $user->password = bcrypt($fields['password']);
+//        $user->password = bcrypt($fields['password']);
         $user->save();
         return $user;
     }
 
     public function edit($fields){
-        $this->fill($fields);
-        $this->password->bcrypt($fields['password']);
+        $this->fill($fields); //name, email
+        if($fields['password'] != null) {
+            $this->password = bcrypt($fields['password']);
+        }
         $this->save();
     }
 
+    public function genetatePassword($password){
+        if($password != null) {
+            $this->password = bcrypt($password);
+            $this->save();
+        }
+    }
+
+
     public function remove(){
-        Storage::delete('uploads/' . $this->image);
+        $this->removeAvatar();
         $this->delete();
     }
 
+    public function removeAvatar(){
+        if($this->avatar != null) {
+            Storage::delete('uploads/' . $this->avatar);
+        }
+    }
+
+    //загрузка аватара. Если есть старый - удаляем и обновляем
     public function uploadAvatar($image){
         if($image == null) { //если картинка не зашла - выйти
             return;
         }
-        if ($this->avatar != null) {
-            Storage::delete('uploads/' . $this->avatar);
-        }
-        Storage::delete('uploads/' . $this->avatar);
+        $this->removeAvatar(); //удаляем старую аву
         $filename = str_random(10) . '.' . $image->extension();
         $image->storeAs('uploads', $filename);
         $this->avatar = $filename;
