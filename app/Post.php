@@ -16,7 +16,7 @@ class Post extends Model
     const IS_PUBLIC = 1;
 
 
-    protected $fillable = ['title', 'content', 'date'];
+    protected $fillable = ['title', 'content', 'date', 'description'];
 
     public function category(){
         return $this->belongsTo(Category::class, 'category_id');
@@ -160,6 +160,36 @@ class Post extends Model
         } else {
             return 'Нет тегов';
         }
+    }
+
+    public function getCategoryId(){
+        return $this->category != null ? $this->category->id : null;
+    }
+
+    public function getDate() {
+        return Carbon::createFromFormat('d/m/y', $this->date)->format('F d, y');
+    }
+
+    public function hasPrevious() {
+        return self::where('id', '<', $this->id)->max('id');
+    }
+
+    public function hasNext() {
+        return self::where('id', '>', $this->id)->min('id');
+    }
+
+    public function getPrevious() {
+        $postID = $this->hasPrevious();
+        return self::find($postID);
+    }
+
+    public function getNext() {
+        $postID = $this->hasNext();
+        return self::find($postID);
+    }
+
+    public function related() {
+        return self::all()->except($this->id);
     }
 
 
