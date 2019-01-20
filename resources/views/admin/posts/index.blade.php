@@ -57,7 +57,7 @@
 
                             <td><a href=" {{route('posts.edit', $post->id)}} " class="fa fa-pencil"></a>
                                 {{Form::open(['route'=>['posts.destroy', $post->id], 'method'=>'delete'])}}
-                                <button type="submit" class="delete" onclick="confirm('are you sure?')">
+                                <button type="submit" class="delete" onclick="confirm('Are you sure?')">
                                     <i class="fa fa-remove"></i>
                                 </button>
                                 {{Form::close()}}

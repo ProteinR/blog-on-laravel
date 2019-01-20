@@ -141,6 +141,11 @@ class Post extends Model
 //        echo date("H:i:s");
     }
 
+    public function getDateAttribute($value){
+        $date = Carbon::createFromFormat('Y-m-d', $value)->format('d/m/y');
+        return $date;
+    }
+
     public function getCategoryTitle() {
         if($this->category != null) {
             return $this->category->title;
@@ -149,8 +154,12 @@ class Post extends Model
         }
     }
 
-    public function getTagsTitles() {
-        dd($this->tags);
+    public function getTagsTitles(): String {
+        if(!($this->tags->isEmpty())) { //если теги есть - возвращаем
+            return implode(', ', $this->tags->pluck('title')->all());
+        } else {
+            return 'Нет тегов';
+        }
     }
 
 

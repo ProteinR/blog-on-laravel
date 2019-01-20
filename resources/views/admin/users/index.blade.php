@@ -54,6 +54,7 @@
                                     <i class="fa fa-remove"></i>
                                 </button>
                                 {{Form::close()}}
+                            </td>
                         </tr>
                         @endforeach
 
