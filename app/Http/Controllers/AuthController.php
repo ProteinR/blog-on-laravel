@@ -20,7 +20,8 @@ class AuthController extends Controller
         ]);
 
         $user = User::add($request->all());
-        $user->genetatePassword($request->get('password'));
+        $user->
+        generatePassword($request->get('password'));
         return redirect()->route('login.form');
     }
 
@@ -34,10 +35,13 @@ class AuthController extends Controller
             'password'=>'required',
         ]);
 
+        //проверка на авторизацию, вовзращает true если авторизовались
         $result = Auth::attempt([
             'email'=>$request->get('email'),
             'password'=>$request->get('password'),
         ]);
+
+        //если авторизация true
         if($result) {
             return redirect('/');
         }else {

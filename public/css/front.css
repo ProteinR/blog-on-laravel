@@ -4244,7 +4244,7 @@ recent post
 }
 
 .media .popular-img img {
-    width: auto;
+    width: 103px;
 }
 
 /*===================
@@ -4544,6 +4544,7 @@ blog css
 
 .top-comment img {
     padding-right: 15px;
+    width: 109px;
 }
 
 .top-comment p {
@@ -4670,6 +4671,10 @@ blog css
     overflow: hidden;
 }
 
+.comment-wrapper {
+    display: flex;
+}
+
 .bottom-comment .comment-text {
     padding: 2px;
 }
@@ -4684,8 +4689,8 @@ blog css
 }
 
 .bottom-comment .comment-img {
-    padding: 10px 15px 100px;
-    float: left;
+    padding: 10px 15px;
+    min-width: 90px;
 }
 
 .bottom-comment h5 {
@@ -4785,6 +4790,10 @@ input[type="text"]:focus, input[type="email"]:focus, textarea {
     right: 0;
     background: rgba(0, 0, 0, 0.55);
 
+}
+
+.down-carousel {
+    width: 217px;
 }
 
 .coming-soon {
@@ -5122,7 +5131,7 @@ p.go-back-home a:hover {
 
 img.profile-image
 {
-    width: 50%;
+    /*width: 50%;*/
     margin: 0px auto 20px;
     display: block;
 }

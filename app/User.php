@@ -2,10 +2,12 @@
 
 namespace App;
 
+use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\ImageManager;
 
 class User extends Authenticatable
 {
@@ -52,7 +54,7 @@ class User extends Authenticatable
         $this->save();
     }
 
-    public function genetatePassword($password){
+    public function generatePassword($password){
         if($password != null) {
             $this->password = bcrypt($password);
             $this->save();
@@ -78,8 +80,13 @@ class User extends Authenticatable
         }
         $this->removeAvatar(); //удаляем старую аву
         $filename = str_random(10) . '.' . $image->extension();
-        $image->storeAs('uploads', $filename);
-        $this->avatar = $filename;
+        $imageSrc = 'uploads/'.$filename;
+        //обрезаем по картинку по ширине с пропорциями и сохраняем
+        Image::make($image)->resize(109, null, function ($constraint) {
+            $constraint->aspectRatio();
+        })->save($imageSrc);
+
+        $this->avatar = $filename; //назначаем аватаром
         $this->save();
     }
 

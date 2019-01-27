@@ -9,12 +9,12 @@ class Comment extends Model
     //
     public function post()
     {
-        return $this->hasOne(Post::class);
+        return $this->belongsTo(Post::class);
     }
 
     public function author()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     //Prove comment
@@ -28,10 +28,11 @@ class Comment extends Model
         $this->save();
     }
 
-    public function togleStatus(){
-        if($this->status = 0){
+    public function toggleStatus(){
+        if($this->status == 0){
             $this->allow();
+        }else {
+            $this->disAllow();
         }
-        $this->disAllow();
     }
 }

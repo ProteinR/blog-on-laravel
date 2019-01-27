@@ -33,7 +33,7 @@ class UsersController extends Controller
             'avatar'=>'nullable|image'
         ]);
         $user = User::add($request->all());
-        $user->genetatePassword($request->get('password'));
+        $user->generatePassword($request->get('password'));
         $user->uploadAvatar($request->file('avatar'));
         return redirect()->route('users.index');
     }
@@ -59,7 +59,7 @@ class UsersController extends Controller
             'avatar' => 'nullable|image',
         ]);
         $user->edit($request->all());
-        $user->genetatePassword($request->get('password'));
+        $user->generatePassword($request->get('password'));
         $user->uploadAvatar($request->file('avatar'));
 //        dd($request->all());
         return redirect()->route('users.index');
