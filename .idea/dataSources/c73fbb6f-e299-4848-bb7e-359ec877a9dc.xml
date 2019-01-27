@@ -1108,7 +1108,7 @@
     </column>
     <column id="266" parent="231" name="content">
       <Position>4</Position>
-      <DataType>varchar(191)|0s</DataType>
+      <DataType>text|0s</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>

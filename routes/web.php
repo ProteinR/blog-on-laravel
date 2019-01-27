@@ -19,6 +19,9 @@ Route::get('/', 'HomeController@index')->name('index');
 Route::get('/post/show/{slug}', 'HomeController@show')->name('post.show');
 Route::get('/tag/{slug}', 'HomeController@tag')->name('tag.show');
 Route::get('/category/{slug}', 'HomeController@category')->name('category.show');
+Route::post('/subscribe', 'SubsController@subscribe');
+Route::get('/verify/{token}', 'SubsController@verify');
+
 
 Route::group(['middleware'=>'auth'], function() {
     Route::get('/logout', 'AuthController@logout');
@@ -46,6 +49,8 @@ Route::group(['prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>'admin'], f
     Route::get('/comments', 'CommentsController@index')->name('admin.comments');
     Route::get('/comments/toggle/{id}', 'CommentsController@toggle');
     Route::delete('/comments/{id}/destroy', 'CommentsController@destroy')->name('comments.destroy');
+    Route::resource('/subscribers', 'SubscribersController');
+
 });
 
 

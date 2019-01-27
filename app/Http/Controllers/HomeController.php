@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index() {
-        $posts = Post::paginate(2);
+        $posts = Post::where('status', Post::IS_PUBLIC)->orderBy('id', 'desc')->paginate(4);
         return view('pages.index', compact('posts'));
     }
 

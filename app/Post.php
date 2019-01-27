@@ -5,11 +5,11 @@ namespace App;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class Post extends Model
 {
-    //
     use Sluggable;
 
     const IS_DRAFT = 0;
@@ -50,7 +50,7 @@ class Post extends Model
     public static function add($fields){
         $post = new static;
         $post->fill($fields);
-        $post->user_id = 1;
+        $post->user_id = Auth::user()->id;
         $post->save();
 
         return $post;

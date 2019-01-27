@@ -29,7 +29,7 @@
     <div class="container">
         <div class="menu-content">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
+            <div class="navbar-header" style="margin-top: 5px;">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                         data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -76,6 +76,11 @@
     <!-- /.container-fluid -->
 </nav>
 
+@if(session('status'))
+    <div class="alert alert-success">
+        {{session('status')}}
+    </div>
+@endif
 
 @yield('content')
 
